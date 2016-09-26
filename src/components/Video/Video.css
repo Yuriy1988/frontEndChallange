@@ -1,0 +1,17 @@
+.video {
+    border: 1px solid green;
+    width: 25%;
+    display: inline-block;
+    margin: 5px;
+    vertical-align: middle;
+}
+
+.video img {
+    width: 100%;
+}
+
+div.desc {
+    height: 10%;
+    padding: 10px;
+    text-align: center;
+}
