@@ -1,8 +1,9 @@
-import React, { Component, PropTypes } from 'react'
-import { Provider } from 'react-redux'
-import Videos from './Videos'
-import SearchBar from './SearchBar/SearchBar'
-import {store} from '../store'
+import React, { Component, PropTypes } from 'react';
+import { Provider } from 'react-redux';
+import Videos from '../Videos';
+import SearchBar from '../SearchBar/SearchBar';
+import {store} from '../../store';
+import './Root.css';
 
 class Root extends Component {
 

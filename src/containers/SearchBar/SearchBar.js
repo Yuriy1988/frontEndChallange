@@ -15,7 +15,7 @@ class SearchBar extends Component {
 
     render () {
         return (
-            <form onSubmit={this.onFormSubmit}>
+            <form className="video-search" onSubmit={this.onFormSubmit}>
                 <input
                     type="text"
                     placeholder="Enter your request"

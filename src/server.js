@@ -1,7 +1,7 @@
 import express from 'express';
 import React from 'react';
 import ReactDom from 'react-dom/server';
-import Root from 'containers/Root';
+import Root from 'containers/Root/Root';
 
 const app = express();
 
