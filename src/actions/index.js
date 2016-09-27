@@ -6,10 +6,9 @@ const ROOT_URL = `https://api.vimeo.com/videos`;
 
 export function fetchVideos(query) {
     const url = `${ROOT_URL}?query=${query}&access_token=${TOKEN}`;
-    const request = axios.get(url);
 
     return {
         type: FETCH_VIDEOS,
-        payload: request
+        callAPI: url
     };
 }

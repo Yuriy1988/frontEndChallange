@@ -3,6 +3,7 @@ import { Provider } from 'react-redux';
 import Videos from '../Videos';
 import SearchBar from '../SearchBar/SearchBar';
 import {store} from '../../store';
+import './Reset.css';
 import './Root.css';
 
 class Root extends Component {

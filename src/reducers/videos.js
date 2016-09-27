@@ -1,9 +1,23 @@
-import {FETCH_VIDEOS} from '../constants';
+import {FETCH_VIDEOS, SUCCESS, START, FAIL} from '../constants';
 
-export default function(state = [], action) {
+const initialState = {
+    isFetching: false,
+    data: []
+};
+
+export default function (state = initialState, action) {
+
     switch (action.type) {
-        case FETCH_VIDEOS:
-            return action.payload.data.data;
+        case FETCH_VIDEOS + START:
+            return {...state, isFetching: true};
+
+        case FETCH_VIDEOS + SUCCESS:
+            return {...action.response.data, isFetching: false};
+
+        case FETCH_VIDEOS + FAIL:
+            return {isFetching: false};
+
+        default:
+            return state;
     }
-    return state;
 }

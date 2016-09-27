@@ -1,6 +1,5 @@
 .videoList {
     width: 57%;
-    left: 17.31%;
-    top: 17.2%;
-    position: absolute;
+    margin-left: 17.31%;
+    margin-top: 4%;
 }
