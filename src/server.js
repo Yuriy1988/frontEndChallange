@@ -3,24 +3,20 @@ import React from 'react';
 import ReactDom from 'react-dom/server';
 import configureStore from './store'
 import {Provider} from 'react-redux';
-import {match, RouterContext} from 'react-router';
-import routes from './routes'
+import Root from './containers/Root/Root'
 
 const app = express();
 
 app.use((req, res) => {
-
-    match({ routes, location: req.url }, (error, redirectLocation, renderProps) => {
         const store = configureStore();
 
         const componentHTML = ReactDom.renderToString(
             <Provider store={store}>
-                <RouterContext {...renderProps} />
+                <Root />
             </Provider>
         );
         const finalState = store.getState();
         return res.end(renderHTML(componentHTML, finalState));
-    });
 });
 
 const assetUrl = process.env.NODE_ENV !== 'production' ? 'http://localhost:8050' : '/';
