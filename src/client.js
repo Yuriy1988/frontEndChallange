@@ -1,5 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import Root from 'containers/Root/Root';
+import configureStore from './store';
 
-ReactDOM.render(<Root/>, document.getElementById('react-view'));
+const store = configureStore(window.__INITIAL_STATE__);
+
+ReactDOM.render(<Root store={store}/>, document.getElementById('react-view'));

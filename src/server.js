@@ -1,18 +1,31 @@
 import express from 'express';
 import React from 'react';
 import ReactDom from 'react-dom/server';
-import Root from 'containers/Root/Root';
+import configureStore from './store'
+import {Provider} from 'react-redux';
+import {match, RouterContext} from 'react-router';
+import routes from './routes'
 
 const app = express();
 
 app.use((req, res) => {
-    const componentHTML = ReactDom.renderToString(<Root />);
-    return res.end(renderHTML(componentHTML));
+
+    match({ routes, location: req.url }, (error, redirectLocation, renderProps) => {
+        const store = configureStore();
+
+        const componentHTML = ReactDom.renderToString(
+            <Provider store={store}>
+                <RouterContext {...renderProps} />
+            </Provider>
+        );
+        const finalState = store.getState();
+        return res.end(renderHTML(componentHTML, finalState));
+    });
 });
 
 const assetUrl = process.env.NODE_ENV !== 'production' ? 'http://localhost:8050' : '/';
 
-function renderHTML(componentHTML) {
+function renderHTML(componentHTML, initialState) {
     return `
     <!DOCTYPE html>
       <html>
@@ -22,8 +35,13 @@ function renderHTML(componentHTML) {
           <link rel="stylesheet" href="${assetUrl}/public/assets/styles.css">
       </head>
       <body>
+     
         <div id="react-view">${componentHTML}</div>
+      
         <script type="application/javascript" src="${assetUrl}/public/assets/bundle.js"></script>
+             <script>
+          window.__INITIAL_STATE__ = ${JSON.stringify(initialState)};
+        </script>
       </body>
     </html>
   `;

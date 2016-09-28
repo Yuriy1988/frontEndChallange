@@ -1,5 +1,4 @@
 import {FETCH_VIDEOS} from '../constants'
-import axios from 'axios';
 
 const TOKEN = 'fe948072bce7119dd30809a4d39ce2ff';
 const ROOT_URL = `https://api.vimeo.com/videos`;

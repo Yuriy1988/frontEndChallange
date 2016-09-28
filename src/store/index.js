@@ -1,6 +1,14 @@
-import { createStore, applyMiddleware } from 'redux';
 import callAPI from '../middlewares/callAPI'
+import {createStore, applyMiddleware, compose} from 'redux';
 import reducer from '../reducers';
 
-export const store = applyMiddleware(callAPI)(createStore)(reducer);
+const configureStore = (initialState = {}) => {
 
+    const enhancers = [
+        applyMiddleware(callAPI),
+    ];
+
+    return createStore(reducer, initialState, compose(...enhancers));
+};
+
+export default configureStore;
